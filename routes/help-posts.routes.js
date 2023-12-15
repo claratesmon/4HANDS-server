@@ -54,7 +54,7 @@ router.get("/volunteered/:userId", (req, res, next) => {
 });
 
 router.post("/createhelp", (req, res, next) => {
-    const { title, location, description, helpImageUrl, creator } = req.body;
+    const { title, location, description, helpImageUrl, creator, category } = req.body;
     let newPost = null;
     //console.log("reqbody", req.body);
     HelpPost.create({
@@ -63,6 +63,7 @@ router.post("/createhelp", (req, res, next) => {
         description,
         helpImageUrl,
         creator,
+        category
     })
     .then((createdHelp) => {
         newPost = createdHelp;
@@ -81,7 +82,7 @@ router.post("/createhelp", (req, res, next) => {
 
 router.put("/edithelp/:helpId", (req, res, next) => {
     const {helpId} = req.params
-    const { title, location,description, helpImageUrl, selectedVolunteer} = req.body;
+    const { title, location,description, helpImageUrl, selectedVolunteer, category} = req.body;
     console.log(req.body, req.params);
 
     HelpPost.findByIdAndUpdate(helpId, {$set:{
@@ -90,6 +91,7 @@ router.put("/edithelp/:helpId", (req, res, next) => {
         description, 
         helpImageUrl, 
         selectedVolunteer,
+        category
         }
     })
     .then((updatedHelp) => {

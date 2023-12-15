@@ -18,6 +18,11 @@ const helpPostSchema = new Schema(
             type: String,
             default: "/images/help-default.jpg"
         },
+        category: {
+            type: String,
+            enum: ["Study", "Tech", "Talk session", "Transport", "House repairs","Advice","Cooking", "Others"],
+            default: ["Others"]
+        },
         creator:  {
             type: Schema.Types.ObjectId,
             ref: "User"
